@@ -3,7 +3,7 @@
 		src="https://github.com/zeyadetman/chaos/blob/master/image.png" 
 		width="256" 
 		height="256">
-	<h1>The Chaos Game</h1>
+	<h1><a href="https://zeyadetman.github.io/chaos/">The Chaos Game</a></h1>
 	<p>
 		<b>In mathematics, the term chaos game originally referred to a method of creating a fractal, using a polygon and an initial point selected at random inside it.</b>
 	</p>
