@@ -3,8 +3,8 @@ var ctx = canvas.getContext('2d');
 
 const GenerateRand = () => Math.floor(Math.random() * 7);
 const updateDot = (x, y, point) => {
-  let X = Math.min(x,point.x)+(Math.max(x,point.x)-Math.min(x,point.x))/2;
-  let Y = Math.min(y,point.y)+(Math.max(y,point.y)-Math.min(y,point.y))/2;
+  let X = Math.max(x,point.x)/2;
+  let Y = Math.max(y,point.y)/2;
   return {x: X, y: Y};
 }
 const createDot = (obj) => {
