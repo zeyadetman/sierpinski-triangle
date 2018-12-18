@@ -1,10 +1,10 @@
-var canvas = document.getElementById('chaos');
-var ctx = canvas.getContext('2d');
+const canvas = document.getElementById('chaos');
+const ctx = canvas.getContext('2d');
 
-const GenerateRand = () => Math.floor(Math.random() * 7);
+const GenerateRand = () => (Math.random() * 7) | 0;
 const updateDot = (x, y, point) => {
-  let X = Math.max(x,point.x)/2;
-  let Y = Math.max(y,point.y)/2;
+  let X = Math.min(x,point.x)+(Math.max(x,point.x)-Math.min(x,point.x))/2;
+  let Y = Math.min(y,point.y)+(Math.max(y,point.y)-Math.min(y,point.y))/2;
   return {x: X, y: Y};
 }
 const createDot = (obj) => {
@@ -15,13 +15,7 @@ const createDot = (obj) => {
   ctx.stroke();
 }
 
-const pA = {x: canvas.width/2, y: 5};
-const pB = {x: 5, y: canvas.height-5} 
-const pC = {x: canvas.width-5, y: canvas.height-5}
-
-createDot(pA);
-createDot(pB);
-createDot(pC);
+const points = [{x: canvas.width/2, y: 5}, {x: 5, y: canvas.height-5}, {x: canvas.width-5, y: canvas.height-5}]
 
 const begin = (iterations) => {
   let x = canvas.width/4;
@@ -29,21 +23,11 @@ const begin = (iterations) => {
     for(let i=0;i<iterations;i++) {
     createDot({x, y});
     let randN = GenerateRand();
-    if(randN == 1 || randN == 2) {
-      const currentDot = updateDot(x, y, pA);
-      x = currentDot.x;
-      y = currentDot.y;
-    }
-    else if(randN == 3 || randN == 4) {
-      const currentDot = updateDot(x, y, pB);
-      x = currentDot.x;
-      y = currentDot.y;
-    }
-    else if(randN == 5 || randN == 6){
-      const currentDot = updateDot(x, y, pC);
-      x = currentDot.x;
-      y = currentDot.y;
-    }
+    const currentDot = (randN == 1 || randN == 2) ? updateDot(x, y, points[0])
+    : (randN == 3 || randN == 4) ? updateDot(x, y, points[1])
+    : updateDot(x, y, points[2]);
+    x = currentDot.x;
+    y = currentDot.y;
   }
 }
 
